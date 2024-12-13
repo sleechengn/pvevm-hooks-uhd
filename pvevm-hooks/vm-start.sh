@@ -22,7 +22,7 @@ echo "VM $VMID is starting prepare invoke vfio-startup.sh" >> $(dirname $0)/$VMI
 echo "VM execute vfio-startup.sh"
 $(dirname $0)/vfio-startup.sh
 
-echo "ready to unbind $v_no to $v_dv"
+sleep 1
 echo "ready to unbind $v_no to $v_dv" >> $(dirname $0)/$VMID-hooks.log
 echo $v_no > /sys/bus/pci/drivers/$v_dv/unbind
 echo "[done] ready to unbind $v_no to $v_dv"
