@@ -36,7 +36,9 @@ done < "$input"
 
 # Rebind framebuffer for nvidia
 if test -e "/tmp/vfio-is-nvidia" ; then
-  echo "efi-framebuffer.0" > /sys/bus/platform/drivers/efi-framebuffer/bind
+  if [ -f "/sys/bus/platform/drivers/efi-framebuffer/bind" ]; then
+    echo "efi-framebuffer.0" > /sys/bus/platform/drivers/efi-framebuffer/bind
+  fi
 fi
 
 echo "End of teardown!"

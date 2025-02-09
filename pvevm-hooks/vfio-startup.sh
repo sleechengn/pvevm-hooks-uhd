@@ -68,7 +68,9 @@ fi
 
 if lsmod | grep "nvidia" &> /dev/null ; then
     echo "true" >> /tmp/vfio-is-nvidia
-    echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
+    if [ -f "/sys/bus/platform/drivers/efi-framebuffer/unbind" ]; then
+        echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
+    fi
 fi
 
 echo "End of startup!"

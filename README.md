@@ -23,16 +23,16 @@
 
 	操作方法是：进入目录执行 chmod +x *.sh
 
-2、/opt/fifo下的 cmd.sh 添加在 /etc/rc.local 自动启动中,没有这个文件就新建
+2、/opt/fifo下的 queue.sh 添加在 /etc/rc.local 自动启动中,没有这个文件就新建
 
 	开启 /etc/rc.local 开机自动启动方法
 
   	使用  systemctl enable rc-local 命令启用开机启动 /etc/rc.local
 	
-  	新建	 /etc/rc.local ，在里面添加 /opt/fifo/cmd.sh
+  	新建	 /etc/rc.local ，在里面添加 /opt/fifo/queue.sh
 ```
 #!/usr/bin/bash
-/opt/fifo/cmd.sh &   
+/opt/fifo/queue.sh &   
 ```       
 注意&符号非阻塞执行
 ```	
@@ -42,7 +42,7 @@
    
 3、直通显卡，并设置hook
 
-	首先把 /opt/pvevm-hooks/vm-hook.sh 复制至 /var/lib/vz/snappets/	下，也就是local存储
+	首先把 /opt/pvevm-hooks/vm-hook.sh 复制至 /var/lib/vz/snippets/	下，也就是local存储
 
   	将后在 /etc/pve/qemu-server/xxx.conf添加
 ```  	
@@ -78,5 +78,5 @@ curl -k -v -X POST -b "PVEAuthCookie=$ticket" -H "CSRFPreventionToken: $csrf_tok
 启动方法
 
 ```
-vm-start xxxVMID
+vm-start.sh xxxVMID
 ```
