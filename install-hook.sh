@@ -34,6 +34,7 @@ $INSTALLPATH/pvevm-hooks/vm-hook.sh \$*
 EOF
 
 chmod +x /var/lib/vz/snippets/pvevm-hooks-uhd.sh
+chmod +x $INSTALLPATH/pvevm-hooks/*.sh
 
 if [ "$1" ]; then
     qm set $1 --hookscript local:snippets/pvevm-hooks-uhd.sh
