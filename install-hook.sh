@@ -24,7 +24,7 @@ EOF
 
 chmod +x $INSTALLPATH/fifo/queue.sh
 systemctl enable fifo.service
-systemctl start fifo.service
+systemctl start fifo.service &
 
 fi
 
