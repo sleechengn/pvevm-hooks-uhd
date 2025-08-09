@@ -22,6 +22,7 @@ Type=oneshot
 WantedBy=multi-user.target
 EOF
 
+chmod +x $INSTALLPATH/fifo/queue.sh
 systemctl enable fifo.service
 systemctl start fifo.service
 
