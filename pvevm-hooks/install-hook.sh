@@ -4,6 +4,10 @@ if [ ! -e "/var/lib/vz/snippets" ]; then
     mkdir -p /var/lib/vz/snippets
 fi
 
+if [ !-e "/etc/systemd/system/fifo.service" ]; then
+
+fi
+
 INSTALLPATH=$(pwd)
 
 cat > /var/lib/vz/snippets/pvevm-hooks-uhd.sh <<EOF
