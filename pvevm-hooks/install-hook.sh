@@ -4,7 +4,7 @@ if [ ! -e "/var/lib/vz/snippets" ]; then
     mkdir -p /var/lib/vz/snippets
 fi
 
-INSTALLPATH=$(dirname $0)
+INSTALLPATH=$(pwd)
 
 cat > /var/lib/vz/snippets/pvevm-hooks-uhd.sh <<EOF
 #!/usr/bin/bash
