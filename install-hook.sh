@@ -13,7 +13,7 @@ Description=FIFO QUEUE
 After=network-online.target
 
 [Service]
-ExecStart=$INSTALLPATH/fifo/queue.sh
+ExecStart=/usr/bin/bash $INSTALLPATH/fifo/queue.sh
 WorkingDirectory=$INSTALLPATH/fifo
 User=root
 Type=oneshot
