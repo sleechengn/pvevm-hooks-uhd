@@ -1,10 +1,12 @@
-已经应用于 8.3
+已经应用于 8.x,9.x
 
-本项目适用于Intel核显，并适用安装了GNOME桌面的PVE系统
+本项目适用于Intel核显，并适用安装了GNOME桌面的PVE系统，也可以适用未安装图形界面的PVE
 
 使用效果：
 
-虚拟机开机，GNOME桌面自动退出，开启虚拟机。虚拟机关机以后自动启动GNOME到桌面
+虚拟机开机，GNOME桌面自动退出，或者SHELL界面退出，开启虚拟机，显卡由虚拟机占用。虚拟机关机以后自动启动GNOME到桌面，或者SHELL
+
+如果要安装GNOME可以使用以下的方法
 
 安装GNOME桌面方法
 
@@ -17,13 +19,14 @@
 
 开启虚拟机前自动关闭GDM等桌面服务，并将显卡绑定在vfio模块以供虚拟机使用
 
-安装方法：
+钩子安装方法：
 
 ```
-	git clone https://本项目
+	git clone https://github.com/sleechengn/pvevm-hooks-uhd
 	cd pvevm-hooks-uhd
 	chmod +x install-hook.sh
 	./install-hook <vmid>
+	# <vmid> 写成你的虚拟机id
 ```
 
 这样钩子设置完成，虚拟机启动、关闭、进程退出时就是执行这个脚本的内容
