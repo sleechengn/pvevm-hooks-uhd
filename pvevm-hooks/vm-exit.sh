@@ -41,3 +41,5 @@ echo "vfio-teardown start "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-h
 $(dirname $0)/vfio-teardown.sh
 
 echo "VM $VMID stopped "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
+
+systemctl restart systemd-blacklight@blacklight:intel_blacklight.service
