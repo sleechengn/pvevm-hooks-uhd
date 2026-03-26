@@ -43,3 +43,4 @@ $(dirname $0)/vfio-teardown.sh
 echo "VM $VMID stopped "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 
 systemctl restart systemd-backlight@backlight:intel_backlight.service
+cat /sys/class/backlight/intel_backlight/max_brightness > /sys/class/backlight/intel_backlight/brightness
