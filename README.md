@@ -54,8 +54,87 @@ csrf_token=$(echo $auth_json | jq --raw-output '.data.CSRFPreventionToken')
 curl -k -v -X POST -b "PVEAuthCookie=$ticket" -H "CSRFPreventionToken: $csrf_token" https://localhost:8006/api2/json/nodes/pve/qemu/$VMID/status/start
 ```
 
+
+
+
 启动方法
 
 ```
 vm-start.sh xxxVMID
 ```
+### 如果你要使用Q35直通，请安装以下包
+
+PVE9.1安装 pve-qemu-kvm_10.2.1-1_amd64.deb
+
+PVE9.0安装 pve-qemu-kvm_10.0.2-4_amd64.deb
+
+核显直通配置：
+
+i440fx 参考
+```
+agent: 1
+args: -set device.hostpci0.addr=02.0 -set device.hostpci0.x-igd-gms=0x2 -set device.hostpci0.x-igd-opregion=on -set device.hostpci0.x-igd-legacy-mode=on
+balloon: 0
+bios: ovmf
+boot: order=virtio0;net0
+cores: 6
+cpu: host
+efidisk0: hdd:112/vm-112-disk-3.qcow2,efitype=4m,size=528K
+hookscript: local:snippets/pvevm-hooks-uhd.sh
+hostpci0: 0000:00:02.0,romfile=vbios/z370.rom
+hostpci1: 0000:00:1f.3
+machine: pc-i440fx-10.0
+memory: 8192
+meta: creation-qemu=10.0.2,ctime=1755647865
+name: wini440fx-igd
+net0: virtio=BC:24:11:08:94:47,bridge=lan
+numa: 0
+ostype: win11
+scsihw: virtio-scsi-single
+smbios1: uuid=77317aed-9416-4cde-b9ec-b705b6d1ce52
+sockets: 1
+tpmstate0: hdd:112/vm-112-disk-4.raw,size=4M,version=v2.0
+usb0: mapping=USB-KB
+usb1: mapping=USB-MOUSE
+usb2: mapping=AX210-USB-BT
+vga: none
+virtio0: nvme:112/vm-112-disk-0.qcow2,iothread=1,size=64G
+vmgenid: 5dc9d0cb-d91f-4c75-80d2-6465edcd9342
+```
+
+q35 参考
+```
+agent: 1
+args: -set device.hostpci0.bus=pcie.0 -set device.hostpci0.addr=0x02.0 -set device.hostpci0.x-igd-gms=0x2 -set device.hostpci0.x-igd-opregion=on -set device.hostpci0.x-igd-lpc=on
+balloon: 0
+bios: ovmf
+boot: order=virtio0
+cores: 6
+cpu: host
+efidisk0: hdd:103/base-103-disk-0.qcow2/100/vm-100-disk-0.qcow2,efitype=4m,pre-enrolled-keys=1,size=528K
+hookscript: local:snippets/pvevm-hooks-uhd.sh
+hostpci0: 0000:00:02.0,pcie=1,romfile=vbios/z370.rom,x-vga=1
+hostpci1: 0000:00:1f.3,pcie=1
+hostpci2: 0000:06:00.0,pcie=1,romfile=vbios/AD106.rom
+hostpci3: 0000:06:00.1,pcie=1
+machine: pc-q35-10.0
+memory: 32768
+meta: creation-qemu=10.0.2,ctime=1754921457
+name: AD106.win11-igd
+net0: virtio=BC:24:11:93:7F:B5,bridge=lan
+numa: 0
+ostype: win11
+scsihw: virtio-scsi-single
+smbios1: uuid=0b5d690c-5894-4a17-ace7-52f48840fc71
+sockets: 1
+tpmstate0: hdd:100/vm-100-disk-1.raw,size=4M,version=v2.0
+usb0: mapping=USB-KB
+usb1: mapping=USB-MOUSE
+usb2: mapping=AX210-USB-BT
+vga: none
+virtio0: nvme:103/base-103-disk-0.qcow2/100/vm-100-disk-0.qcow2,iothread=1,size=128G
+virtio1: hdd:100/vm-100-disk-2.qcow2,iothread=1,size=1T
+vmgenid: 8e593b84-b894-4461-8d7e-0bf05929a9a6
+```
+
+注意你的ROM文件，可以自己制作，也可以去 https://github.com/LongQT-sea/intel-igpu-passthru 下载
