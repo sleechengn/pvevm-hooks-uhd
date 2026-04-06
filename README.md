@@ -138,3 +138,9 @@ vmgenid: 8e593b84-b894-4461-8d7e-0bf05929a9a6
 ```
 
 注意你的ROM文件，可以自己制作，也可以去 https://github.com/LongQT-sea/intel-igpu-passthru 下载
+
+笔记本键盘，要直通，可以参考
+```
+-object input-linux,id=kbd,evdev=/dev/input/by-path/platform-i8042-serio-0-event-kbd,grab_all=on,repeat=on
+-object input-linux,id=mouse1,evdev=/dev/input/by-path/pci-0000\:00\:15.0-platform-i2c_designware.0-event-mouse
+```
