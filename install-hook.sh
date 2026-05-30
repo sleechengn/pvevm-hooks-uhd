@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-INSTALLPATH=$(pwd)
+INSTALLPATH=$(realpath $(dirname $0))
 
 if [ ! -e "/var/lib/vz/snippets" ]; then
     mkdir -p /var/lib/vz/snippets
