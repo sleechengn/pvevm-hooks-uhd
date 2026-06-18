@@ -37,6 +37,8 @@ if test -e "/tmp/vfio-store-display-manager" ; then
     rm -f /tmp/vfio-store-display-manager
 fi
 
+stop_display_manager_if_running NetworkManager
+
 stop_display_manager_if_running sddm
 stop_display_manager_if_running gdm
 stop_display_manager_if_running lightdm
