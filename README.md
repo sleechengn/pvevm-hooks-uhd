@@ -64,9 +64,7 @@ vm-start.sh xxxVMID
 ```
 ### 如果你要使用Q35直通，请安装以下包
 
-PVE9.1安装 pve-qemu-kvm_10.2.1-1_amd64.deb
-
-PVE9.0安装 pve-qemu-kvm_10.0.2-4_amd64.deb
+PVE9 请安装 [pve-qemu-kvm](https://github.com/sleechengn/pvevm-hooks-uhd/releases)
 
 核显直通配置：
 
