@@ -4,7 +4,7 @@ VMID="$1"
 SELECT="$2"
 
 echo "VM $VMID is $SELECT " > $(dirname $0)/$VMID-hooks.log
-
+echo "$0 "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 echo "VM Start 1"
 
 v_no=$(lspci -nn -D|grep UHD|awk '{print $1}'|xargs -i lspci -s {} -n -D|awk '{print $1}')

@@ -2,7 +2,7 @@
 
 VMID="$1"
 SELECT="$2"
-
+echo "$0 "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 echo "VM $VMID is exiting" >> $(dirname $0)/$VMID-hooks.log
 
 v_no=$(lspci -nn -D|grep 8086|grep UHD|awk '{print $1}'|xargs -i lspci -s {} -n -D|awk '{print $1}')

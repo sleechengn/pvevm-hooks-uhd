@@ -2,6 +2,7 @@
 
 VMID="$1"
 SELECT="$2"
+echo "$0 "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 FIFO=/run/execute.fifo
 if [ -f "/tmp/$VMID-running"  ]; then
 	rm -rf /tmp/$VMID-running

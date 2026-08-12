@@ -2,6 +2,7 @@
 
 VMID="$1"
 SELECT="$2"
+echo "$0 "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 FIFO=/run/execute.fifo
 touch /tmp/$VMID-running
 echo "VM $VMID is $SELECT" >> $(dirname $0)/$VMID-hooks.log

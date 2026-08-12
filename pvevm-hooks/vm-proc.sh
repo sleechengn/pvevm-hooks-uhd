@@ -1,5 +1,6 @@
 #!/bin/bash
 VMID="$1"
+echo "$0 "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 echo "VM $VMID monitor Running" >> $(dirname $0)/$VMID-hooks.log
 vmxPID=$(cat /var/run/qemu-server/$VMID.pid)
 tail --pid=$vmxPID -f /dev/null
