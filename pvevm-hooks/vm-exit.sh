@@ -32,14 +32,23 @@ modprobe $v_dv
 modprobe $a_dv
 
 echo "bind $v_no to $v_dv "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
-echo $v_no > /sys/bus/pci/drivers/$v_dv/bind >> $(dirname $0)/$VMID-hooks.log 2>&1
+echo $v_no > /sys/bus/pci/drivers/$v_dv/bind
 bind_status=$?
 echo "bind $v_no to $v_dv status:$bind_status" >> $(dirname $0)/$VMID-hooks.log
 
 echo "bind $a_no to $a_dv "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
-echo $a_no > /sys/bus/pci/drivers/$a_dv/bind >> $(dirname $0)/$VMID-hooks.log 2>&1
+echo $a_no > /sys/bus/pci/drivers/$a_dv/bind
 bind_status=$?
+try_cnt=0
 echo "bind $a_no to $a_dv status:$bind_status" >> $(dirname $0)/$VMID-hooks.log
+while [ ! $bind_status -eq 0 ] && [ $try_cnt -lt 3 ]; do
+    try_cnt=$(($try_cnt+1))
+    sleep 1
+    echo $a_no > /sys/bus/pci/drivers/$a_dv/bind
+    bind_status=$?
+    echo "bind $a_no to $a_dv status:$bind_status" >> $(dirname $0)/$VMID-hooks.log
+done
+
 
 echo "vfio-teardown start "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 $(dirname $0)/vfio-teardown.sh
