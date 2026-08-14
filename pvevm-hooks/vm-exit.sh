@@ -33,9 +33,13 @@ modprobe $a_dv
 
 echo "bind $v_no to $v_dv "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 echo $v_no > /sys/bus/pci/drivers/$v_dv/bind
+bind_status=$?
+echo "bind $v_no to $v_dv status:$bind_status"$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 
 echo "bind $a_no to $a_dv "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 echo $a_no > /sys/bus/pci/drivers/$a_dv/bind
+bind_status=$?
+echo "bind $a_no to $a_dv status:$bind_status "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 
 echo "vfio-teardown start "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 $(dirname $0)/vfio-teardown.sh
