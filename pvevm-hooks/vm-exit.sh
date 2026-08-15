@@ -58,4 +58,4 @@ echo "VM $VMID stopped "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hook
 systemctl restart systemd-backlight@backlight:intel_backlight.service
 cat /sys/class/backlight/intel_backlight/max_brightness > /sys/class/backlight/intel_backlight/brightness
 
-$(dirname $0)/vfio-sw-end.sh
+#$(dirname $0)/vfio-sw-end.sh

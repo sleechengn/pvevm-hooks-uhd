@@ -17,7 +17,7 @@ a_id=$(lspci -nn -D|grep 8086|grep Audio|awk '{print $1}'|xargs -i lspci -s {} -
 a_id="$(echo $a_id|cut -c 1-4) $(echo $a_id|cut -c 6-9)"
 a_dv=$(lspci -k -s $a_no|grep "Kernel driver in use"|awk '{print $5}')
 
-$(dirname $0)/vfio-sw-start.sh
+#$(dirname $0)/vfio-sw-start.sh
 
 echo "VM $VMID is starting prepare invoke vfio-startup.sh" >> $(dirname $0)/$VMID-hooks.log
 echo "VM execute vfio-startup.sh"
