@@ -3,6 +3,7 @@
 rm -rf /tmp/vfio-sw
 
 if [ -e "/home/sa" ]; then
+    #niri桌面用户态
     NIRI=$(systemctl --user -M sa@ status niri|grep -F active|grep -F running)
     if [ "$NIRI" ]; then
         systemctl --user -M sa@ stop niri
