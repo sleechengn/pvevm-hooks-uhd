@@ -135,7 +135,9 @@ virtio1: hdd:100/vm-100-disk-2.qcow2,iothread=1,size=1T
 vmgenid: 8e593b84-b894-4461-8d7e-0bf05929a9a6
 ```
 
-注意你的ROM文件，可以自己制作，也可以去 https://github.com/LongQT-sea/intel-igpu-passthru 下载
+注意你的ROM文件，可以自己制作，也可以去 https://github.com/LongQT-sea/intel-igpu-passthru 下载，
+制作方法：
+	运行mmtool，打开bios文件（从你主板提取或者在你主板厂家网站下载），找到option rom，没有名字的那个，导出后，命令为 gop ,然后运行 build-IgdAssignmentAndVBIOS，注意名字不要弄错，然后生成rom
 
 笔记本键盘，要直通，可以参考
 ```
