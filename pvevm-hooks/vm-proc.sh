@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 VMID="$1"
 echo "$0 "$(date "+%Y-%m-%d %H:%M:%S") >> $(dirname $0)/$VMID-hooks.log
 echo "VM $VMID monitor Running" >> $(dirname $0)/$VMID-hooks.log

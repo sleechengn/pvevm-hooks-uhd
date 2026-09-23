@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Helpful to read output when debugging
-# set -x
+set -x
 
 long_delay=10
 medium_delay=5

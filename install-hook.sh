@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 INSTALLPATH=$(realpath $(dirname $0))
 
 if [ ! -e "$INSTALLPATH/vz/snippets" ]; then
