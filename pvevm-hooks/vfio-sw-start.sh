@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-rm -rf /tmp/vfio-sw
+set -x
 
-if [ -e "/home/sa" ]; then
-    #niri桌面用户态
-    NIRI=$(systemctl --user -M sa@ status niri|grep -F active|grep -F running)
-    if [ "$NIRI" ]; then
-        systemctl --user -M sa@ stop niri
-        echo "sa niri" >> /tmp/vfio-sw
-    fi
+if systemctl status bluetooth > /dev/null 2>&1; then
+    systemctl stop bluetooth
+    sleep 1
+    modprobe -r btusb
 fi
